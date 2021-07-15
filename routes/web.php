@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\StoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,9 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     });
+
+    // ->parameter('settingcriterias', 'settingCriteria')
+    Route::resource('/stores', StoreController::class);
 
 });
 

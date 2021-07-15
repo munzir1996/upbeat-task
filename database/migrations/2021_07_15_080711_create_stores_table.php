@@ -19,7 +19,7 @@ class CreateStoresTable extends Migration
             $table->string('location');
             $table->string('phone')->nullable();
             $table->string('password');
-            $table->string('status');
+            $table->string('status')->default(config('constants.status.active'));
             $table->timestamps();
         });
     }

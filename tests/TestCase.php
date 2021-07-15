@@ -10,6 +10,13 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withoutExceptionHandling();
+    }
+
     public function loginUser($user = null)
     {
         $user = $user ? $user : User::factory()->create();

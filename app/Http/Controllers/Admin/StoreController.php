@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreStoreRequest;
+use App\Http\Requests\Admin\StoreUpdateRequest;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StoreController extends Controller
 {
@@ -34,9 +37,16 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStoreRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        Store::create([
+            'name' => $data['name'],
+            'location' => $data['location'],
+            'phone' => $data['phone'] ?? null,
+            'password' => Hash::make($data['password']),
+        ]);
     }
 
     /**
@@ -68,9 +78,17 @@ class StoreController extends Controller
      * @param  \App\Models\Store  $store
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Store $store)
+    public function update(StoreUpdateRequest $request, Store $store)
     {
-        //
+        $data = $request->validated();
+
+        $store->update([
+            'name' => $data['name'],
+            'location' => $data['location'],
+            'phone' => $data['phone'] ?? null,
+            'password' => Hash::make($data['password']) ?? $store->password,
+        ]);
+
     }
 
     /**
@@ -81,6 +99,6 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        //
+        $store->delete();
     }
 }
