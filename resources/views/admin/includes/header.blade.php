@@ -21,6 +21,7 @@
 
             <div x-show="dropdownOpen" @click="dropdownOpen = false"  class="fixed inset-0 z-10 w-full h-full"></div>
 
+            {{-- left-0 --}}
             <div
                 x-show="dropdownOpen"
                 x-transition:enter="transition ease-out duration-400 transform"
@@ -29,7 +30,7 @@
                 x-transition:leave="transition ease-in duration-300 transform"
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-95"
-                class="absolute left-0 z-10 w-48 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
+                class="absolute right-0 z-10 w-48 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">
                     Profile
                 </a>

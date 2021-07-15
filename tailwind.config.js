@@ -11,6 +11,18 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                roboto: ["Roboto"],
+                cairo: ["Cairo"],
+            },
+            colors: {
+                primary: '#34AC72',
+            },
+            fontFamily: {
+                roboto: ["Roboto"],
+                cairo: ["Cairo"],
+            },
+            spacing: {
+                128: "32rem",
             },
         },
     },
@@ -21,5 +33,8 @@ module.exports = {
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms')
+    ],
 };
+
