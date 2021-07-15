@@ -11,6 +11,16 @@ class Store extends Model
 
     protected $guarded = [];
 
+    /**
+     * Get all of the cars for the Store
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
+    }
+
     public function isActivate()
     {
         return ($this->status == config('constants.status.active')) ? true : false ;

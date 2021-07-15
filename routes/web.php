@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\StoreController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,8 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function () {
     Route::get('stores/change/status/{store}', [StoreController::class, 'changeStatus'])->name('stores.change_status');
     Route::resource('/categories', CategoryController::class);
     Route::get('categories/change/status/{category}', [CategoryController::class, 'changeStatus'])->name('categories.change_status');
+    Route::resource('/cars', CarController::class);
+    Route::get('cars/change/status/{car}', [CarController::class, 'changeStatus'])->name('cars.change_status');
 
 });
 
