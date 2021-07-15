@@ -3,7 +3,6 @@
 namespace Tests\Unit\Admin;
 
 // use PHPUnit\Framework\TestCase;
-// use PHPUnit\Framework\TestCase;
 
 use App\Models\Store;
 use Tests\TestCase;
@@ -64,6 +63,20 @@ class StoreTest extends TestCase
 
         $this->assertDatabaseMissing('stores', [
             'id' => $store->id,
+        ]);
+    }
+
+    /** @test */
+    public function super_admin_can_change_store_status()
+    {
+        $this->loginAdmin();
+
+        $store = Store::factory()->active()->create();
+
+        $this->get('/admin/stores/change/status/'. $store->id);
+
+        $this->assertDatabaseHas('stores', [
+            'status' => config('constants.status.inactive'),
         ]);
     }
 

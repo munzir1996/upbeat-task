@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreStoreRequest;
-use App\Http\Requests\Admin\StoreUpdateRequest;
-use App\Models\Store;
+use App\Http\Requests\Admin\CategoryStoreRequest;
+use App\Http\Requests\Admin\CategoryUpdateRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class StoreController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,25 +36,24 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStoreRequest $request)
+    public function store(CategoryStoreRequest $request)
     {
         $data = $request->validated();
 
-        Store::create([
-            'name' => $data['name'],
-            'location' => $data['location'],
-            'phone' => $data['phone'] ?? null,
-            'password' => Hash::make($data['password']),
+        Category::create([
+             'name' => $data['name'],
+             'description' => $data['description'] ?? null,
+             'parent_category' => $data['parent_category'] ?? 0,
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Store  $store
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Store $store)
+    public function show(Category $category)
     {
         //
     }
@@ -63,10 +61,10 @@ class StoreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Store  $store
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Store $store)
+    public function edit(Category $category)
     {
         //
     }
@@ -75,18 +73,17 @@ class StoreController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Store  $store
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUpdateRequest $request, Store $store)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         $data = $request->validated();
 
-        $store->update([
+        $category->update([
             'name' => $data['name'],
-            'location' => $data['location'],
-            'phone' => $data['phone'] ?? null,
-            'password' => Hash::make($data['password']) ?? $store->password,
+            'description' => $data['description'] ?? null,
+            'parent_category' => $data['parent_category'] ?? 0,
         ]);
 
     }
@@ -94,33 +91,33 @@ class StoreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Store  $store
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Store $store)
+    public function destroy(Category $category)
     {
-        $store->delete();
+        $category->delete();
     }
 
-    public function changeStatus(Store $store)
+    public function changeStatus(Category $category)
     {
-        if ($store->isActivate()) {
-            $store->update([
+        if ($category->isActivate()) {
+            $category->update([
                 'status' => config('constants.status.inactive'),
             ]);
 
             // session()->flash('success', 'تم إلغاء التفعيل بنجاح');
 
-            return redirect()->route('stores.index');
+            return redirect()->route('categories.index');
         }
 
-        if (! $store->isActivate()) {
-            $store->update([
+        if (! $category->isActivate()) {
+            $category->update([
                 'status' => config('constants.status.active'),
             ]);
             // session()->flash('success', 'تم التفعيل بنجاح');
 
-            return redirect()->route('stores.index');
+            return redirect()->route('categories.index');
         }
     }
 

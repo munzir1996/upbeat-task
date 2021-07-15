@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Store;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StoreFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Store::class;
+    protected $model = Category::class;
 
     /**
      * Define the model's default state.
@@ -23,14 +23,12 @@ class StoreFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'location' => $this->faker->country,
-            'phone' => $this->faker->e164PhoneNumber,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'description' => $this->faker->name,
         ];
     }
 
     /**
-     * Indicate that the store is active.
+     * Indicate that the category is active.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
@@ -44,7 +42,7 @@ class StoreFactory extends Factory
     }
 
     /**
-     * Indicate that the store is inactive.
+     * Indicate that the category is inactive.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
