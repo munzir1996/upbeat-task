@@ -24,20 +24,20 @@
             <table class="min-w-full text-sm text-gray-500 lg:text-base" id="cars-table" cellspacing="0">
                 <thead>
                     <tr class="h-12">
-                        <th class="px-6 py-4 text-left">#</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Image')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Store')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Category')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Name')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Description')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Price')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Brand')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Model')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Color')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Type')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Age')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Kilometer')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('car.Status')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">#</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Image')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Store')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Category')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Name')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Description')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Price')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Brand')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Model')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Color')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Type')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Age')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Kilometer')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('car.Status')}}</th>
                         <th class="px-6 py-4 text-center"></th>
                     </tr>
                 </thead>
@@ -45,43 +45,43 @@
                 <tbody>
                     @foreach ($cars as $car)
                     <tr class="text-gray-700">
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->id}}
                         </td>
-                        <td class="text-left">
+                        <td class="{{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             <img class="object-cover w-20 h-20 overflow-hidden rounded-full shadow" src="{{$car->image}}" alt="Your car">
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->store->name}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->category->name}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->name}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->description}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->price}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->brand}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->model}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->color}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->type}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->age}}
                         </td>
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$car->kilometer}}
                         </td>
 

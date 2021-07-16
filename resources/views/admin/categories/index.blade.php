@@ -24,10 +24,10 @@
             <table class="min-w-full text-sm text-gray-500 lg:text-base" id="categories-table" cellspacing="0">
                 <thead>
                     <tr class="h-12">
-                        <th class="px-6 py-4 text-left">#</th>
-                        <th class="px-6 py-4 text-left">{{__('category.Name')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('category.Description')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('category.Status')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">#</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('category.Name')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('category.Description')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('category.Status')}}</th>
                         <th class="px-6 py-4 text-center"></th>
                     </tr>
                 </thead>
@@ -35,15 +35,15 @@
                 <tbody>
                     @foreach ($categories as $category)
                     <tr class="text-gray-700">
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$category->id}}
                         </td>
 
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$category->name}}
                         </td>
 
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$category->description}}
                         </td>
 

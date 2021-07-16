@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\StoreController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/locale/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'ar'])) {
+        abort(400);
+    }
+
+    // App::setlocale($lang);
+    Session::put('locale', $locale);
+
+    return back();
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,6 +38,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::prefix('/admin')->middleware('auth:admin')->group(function () {
+
 
     Route::get('/', function () {
         return view('admin.dashboard');

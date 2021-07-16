@@ -24,11 +24,11 @@
             <table class="min-w-full text-sm text-gray-500 lg:text-base" id="stores-table" cellspacing="0">
                 <thead>
                     <tr class="h-12">
-                        <th class="px-6 py-4 text-left">#</th>
-                        <th class="px-6 py-4 text-left">{{__('store.Name')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('store.Location')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('store.Phone')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('store.Status')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">#</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('store.Name')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('store.Location')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('store.Phone')}}</th>
+                        <th class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">{{__('store.Status')}}</th>
                         <th class="px-6 py-4 text-center"></th>
                     </tr>
                 </thead>
@@ -36,19 +36,19 @@
                 <tbody>
                     @foreach ($stores as $store)
                     <tr class="text-gray-700">
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$store->id}}
                         </td>
 
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$store->name}}
                         </td>
 
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$store->location}}
                         </td>
 
-                        <td class="px-6 py-4 text-left">
+                        <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$store->phone}}
                         </td>
 

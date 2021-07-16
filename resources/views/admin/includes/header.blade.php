@@ -9,6 +9,19 @@
 
     <div class="flex items-center">
 
+        <div x-cloak class="relative">
+            @if (App::isLocale('en'))
+            <a href="{{url('/locale', 'ar')}}" class="flex mx-4 text-primary focus:outline-none">
+                AR
+            </a>
+            @else
+            <a href="{{url('/locale', 'en')}}" class="flex mx-4 text-primary focus:outline-none">
+                EN
+            </a>
+            @endif
+
+        </div>
+
         <div x-cloak x-data="{ dropdownOpen: false }"  class="relative">
             <button @click="dropdownOpen = ! dropdownOpen" class="flex items-center text-gray-600 focus:outline-none">
 

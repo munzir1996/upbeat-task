@@ -22,7 +22,8 @@
         @include('admin.includes.head')
     </head>
     <body>
-        <div x-data="{ sidebarOpen: false }" class="relative flex h-screen bg-gray-100 font-cairo" dir="ltr">
+        <div x-data="{ sidebarOpen: false }" class="relative flex h-screen bg-gray-100 font-cairo"
+        dir="{{app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}">
             @include('admin.includes.sidebar')
 
             <div class="flex flex-col flex-1 overflow-hidden">

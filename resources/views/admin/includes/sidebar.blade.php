@@ -1,7 +1,7 @@
 <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden"></div>
 
 {{-- right-0 --}}
-<div :class="sidebarOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'" class="fixed inset-y-0 z-30 overflow-y-auto transition duration-300 transform bg-white border-l w-60 lg:translate-x-0 lg:static lg:inset-0">
+<div :class="sidebarOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'" class="fixed inset-y-0 z-30 right-0 overflow-y-auto transition duration-300 transform bg-white border-l w-60 lg:translate-x-0 lg:static lg:inset-0">
     <div class="flex items-center justify-center mt-8">
         <div class="flex items-center">
             {{-- <img src="/assets/images/logo.svg" class="h-7" alt="logo"> --}}
