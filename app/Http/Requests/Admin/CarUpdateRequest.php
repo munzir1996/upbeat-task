@@ -35,7 +35,7 @@ class CarUpdateRequest extends FormRequest
             'type' => 'required',
             'age' => 'required',
             'kilometer' => 'required',
-            'image' => 'required',
+            'image' => 'sometimes',
         ];
     }
 }

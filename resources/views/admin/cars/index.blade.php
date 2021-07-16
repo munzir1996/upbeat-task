@@ -48,8 +48,8 @@
                         <td class="px-6 py-4 text-left">
                             {{$car->id}}
                         </td>
-                        <td class="px-6 py-4 text-left">
-                            {{$car->image}}
+                        <td class="text-left">
+                            <img class="object-cover w-20 h-20 overflow-hidden rounded-full shadow" src="{{$car->image}}" alt="Your car">
                         </td>
                         <td class="px-6 py-4 text-left">
                             {{$car->store->name}}
