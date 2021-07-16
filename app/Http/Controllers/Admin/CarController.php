@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CarStoreRequest;
 use App\Http\Requests\Admin\CarUpdateRequest;
 use App\Models\Car;
+use App\Models\Category;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -17,7 +19,11 @@ class CarController extends Controller
      */
     public function index()
     {
-        //
+        $cars = Car::all();
+
+        return view('admin.cars.index', [
+            'cars' => $cars,
+        ]);
     }
 
     /**
@@ -27,7 +33,13 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        $stores = Store::active()->get();
+        $categories = Category::active()->get();
+
+        return view('admin.cars.create', [
+            'stores' => $stores,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -58,6 +70,10 @@ class CarController extends Controller
         if ($request->has('image')) {
             $car->addMedia($request->image)->toMediaCollection('car');
         }
+
+        session()->flash('success', 'Car Added');
+
+        return redirect()->route('cars.create');
     }
 
     /**
@@ -79,7 +95,14 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        //
+        $stores = Store::active()->get();
+        $categories = Category::active()->get();
+
+        return view('admin.cars.edit', [
+            'stores' => $stores,
+            'categories' => $categories,
+            'car' => $car,
+        ]);
     }
 
     /**
@@ -111,6 +134,10 @@ class CarController extends Controller
             $car->addMedia($request->image)->toMediaCollection('car');
         }
 
+        session()->flash('success', 'Car Edited');
+
+        return redirect()->route('cars.edit', $car->id);
+
     }
 
     /**
@@ -122,6 +149,10 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $car->delete();
+
+        session()->flash('success', 'Car Deleted');
+
+        return redirect()->route('cars.index');
     }
 
     public function changeStatus(Car $car)

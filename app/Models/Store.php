@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\QueryBuilders\Admin\StoreQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +11,11 @@ class Store extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function newEloquentBuilder($query): StoreQueryBuilder
+    {
+        return new StoreQueryBuilder($query);
+    }
 
     /**
      * Get all of the cars for the Store

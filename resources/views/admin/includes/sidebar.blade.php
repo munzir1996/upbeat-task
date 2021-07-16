@@ -17,23 +17,23 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
             </svg>
 
-            <span class="mx-3 font-semibold">الرئيسية</span>
+            <span class="mx-3 font-semibold">{{__('sidebar.Dashboard')}}</span>
         </a>
 
-        <a class="flex items-center px-6 py-2 mt-4 {{ Request::is('admin/av') ? 'text-gray-600 bg-gray-300 bg-opacity-25' : 'text-gray-500 hover:bg-gray-300 hover:bg-opacity-25 hover:text-gray-600' }}" href="/items">
+        <a class="flex items-center px-6 py-2 mt-4 {{ Request::is('admin/stores*') ? 'text-gray-600 bg-gray-300 bg-opacity-25' : 'text-gray-500 hover:bg-gray-300 hover:bg-opacity-25 hover:text-gray-600' }}" href="{{route('stores.index')}}">
             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
             </svg>
 
-            <span class="mx-3 font-semibold">المنتجات</span>
+            <span class="mx-3 font-semibold">{{__('store.Store')}}</span>
         </a>
 
-        <a class="flex items-center px-6 py-2 mt-4 {{ Request::is('admin/a') ? 'text-gray-600 bg-gray-300 bg-opacity-25' : 'text-gray-500 hover:bg-gray-300 hover:bg-opacity-25 hover:text-gray-600' }}" href="/ui-kit">
+        <a class="flex items-center px-6 py-2 mt-4 {{ Request::is('admin/categories*') ? 'text-gray-600 bg-gray-300 bg-opacity-25' : 'text-gray-500 hover:bg-gray-300 hover:bg-opacity-25 hover:text-gray-600' }}" href="{{route('categories.index')}}">
             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
             </svg>
 
-            <span class="mx-3 font-semibold">UI KIT</span>
+            <span class="mx-3 font-semibold">Category</span>
         </a>
 
         <div x-data="{ open: false }" class="mt-4">
@@ -54,7 +54,7 @@
                 </span>
             </button>
 
-            <div
+            <div x-cloak
                 x-show="open"
                 x-transition:enter="transition ease-out duration-150 transform"
                 x-transition:enter-start="opacity-0 -translate-y-5"

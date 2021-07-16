@@ -17,7 +17,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.categories.index', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -27,7 +31,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $parentCategories = Category::all();
+
+        return view('admin.categories.create', [
+            'parentCategories' => $parentCategories,
+        ]);
     }
 
     /**
@@ -45,6 +53,11 @@ class CategoryController extends Controller
              'description' => $data['description'] ?? null,
              'parent_category' => $data['parent_category'] ?? 0,
         ]);
+
+
+        session()->flash('success', 'Category Added');
+
+        return redirect()->route('categories.create');
     }
 
     /**
@@ -66,7 +79,12 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $parentCategories = Category::all();
+
+        return view('admin.categories.edit', [
+            'category' => $category,
+            'parentCategories' => $parentCategories,
+        ]);
     }
 
     /**
@@ -83,9 +101,11 @@ class CategoryController extends Controller
         $category->update([
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
-            'parent_category' => $data['parent_category'] ?? 0,
         ]);
 
+        session()->flash('success', 'Category Edited');
+
+        return redirect()->route('categories.edit', $category->id);
     }
 
     /**
@@ -97,6 +117,10 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
+        session()->flash('success', 'Category Deleted');
+
+        return redirect()->route('categories.index');
     }
 
     public function changeStatus(Category $category)
@@ -106,8 +130,7 @@ class CategoryController extends Controller
                 'status' => config('constants.status.inactive'),
             ]);
 
-            // session()->flash('success', 'تم إلغاء التفعيل بنجاح');
-
+            session()->flash('success', 'Store Status Updated');
             return redirect()->route('categories.index');
         }
 
@@ -115,8 +138,8 @@ class CategoryController extends Controller
             $category->update([
                 'status' => config('constants.status.active'),
             ]);
-            // session()->flash('success', 'تم التفعيل بنجاح');
 
+            session()->flash('success', 'Store Status Updated');
             return redirect()->route('categories.index');
         }
     }

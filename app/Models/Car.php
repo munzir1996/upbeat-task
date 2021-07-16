@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\QueryBuilders\Admin\CarQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -12,6 +13,12 @@ class Car extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     protected $guarded = [];
+    protected $with = ['category', 'store'];
+
+    public function newEloquentBuilder($query): CarQueryBuilder
+    {
+        return new CarQueryBuilder($query);
+    }
 
     public function getImageAttribute()
     {

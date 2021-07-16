@@ -37,7 +37,7 @@
                 {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">المنتجات</a> --}}
                 <a href="{{route('admin.logout')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Logout
+                    {{__('header.Logout')}}
                 </a>
                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}

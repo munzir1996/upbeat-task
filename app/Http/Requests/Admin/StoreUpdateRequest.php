@@ -27,7 +27,7 @@ class StoreUpdateRequest extends FormRequest
             'name' => 'required',
             'location' => 'required',
             'phone' => 'sometimes',
-            'password' => 'required',
+            'password' => 'sometimes',
         ];
     }
 }

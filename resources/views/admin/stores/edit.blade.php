@@ -1,97 +1,96 @@
-@extends('layouts.app')
-
-@push('css')
-<link rel="stylesheet" href="{{asset('vendor/css/datatables.min.css')}}">
-@endpush
+@extends('admin.layouts.app')
 
 @section('body')
 
 <div class="p-6 bg-white border rounded-lg">
     <div class="flex items-center justify-between">
         <div>
-            <h1 class="text-xl font-bold text-primary">بيانات المستخدمين</h1>
+            <h1 class="text-xl font-bold text-primary">{{__('store.Edit Store')}}</h1>
         </div>
-
-        <a href="{{route('users.create')}}"
-            class="px-4 py-2 text-white rounded-md bg-green-800 hover:bg-green-700 focus:bg-green-700 focus:outline-none">
-            أضافة مستخدم
-        </a>
 
     </div>
 
     <div class="overflow-x-auto">
         <div class="inline-block min-w-full overflow-hidden align-middle">
-            <table class="min-w-full text-sm text-gray-500 lg:text-base" id="users-table" cellspacing="0">
-                <thead>
-                    <tr class="h-12">
-                        <th class="px-6 py-4 text-right">#</th>
-                        <th class="px-6 py-4 text-right">أسم المستخدم</th>
-                        <th class="px-6 py-4 text-right">البريد الألكتروني</th>
-                        <th class="px-6 py-4 text-center"></th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    @foreach ($users as $user)
-                    <tr class="text-gray-700">
-                        <td class="px-6 py-4 text-right">
-                            {{$user->id}}
-                        </td>
+            <form action="{{route('stores.update', $store->id)}}" method="post">
+                @csrf
+                {{ method_field('PUT') }}
 
-                        <td class="px-6 py-4 text-right">
-                            {{$user->name}}
-                        </td>
+                <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
+                    <div>
+                        <label class="text-gray-700">{{__('store.Name')}}</label>
+                        <input type="text" name="name" value="{{$store->name}}"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40
+                            @error('name') border-red-500 @enderror"
+                            required>
+                            @error('name')
+                                <span class="error text-red-600" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
 
-                        <td class="px-6 py-4 text-right">
-                            {{$user->email}}
-                        </td>
+                    <div>
+                        <label class="text-gray-700">{{__('store.Location')}}</label>
+                        <input type="text" name="location" value="{{$store->location}}"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40
+                            @error('location') border-red-500 @enderror"
+                            required>
+                            @error('location')
+                                <span class="error text-red-600" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+                </div>
 
-                        <td class="flex flex-row -mx-2 text-center">
+                <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
+                    <div>
+                        <label class="text-gray-700">
+                            {{__('store.Phone')}}
+                            <span class="text-blue-400">{{__('store.Optional')}}</span>
+                        </label>
+                        <input type="text" name="phone" value="{{$store->phone}}"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40
+                            @error('phone') border-red-500 @enderror"
+                            required>
+                            @error('phone')
+                                <span class="error text-red-600" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
 
-                            <a href="{{route('users.edit', $user->id)}}" class="p-2 mx-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
-                                        fill="currentColor">
-                                        <path
-                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
-                                        </path>
-                                        <path fill-rule="evenodd"
-                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                            clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                            <form action="{{route('users.destroy', $user->id)}}" method="post">
-                                    @csrf {{ method_field('DELETE') }}
-                                <button type="submit" class="p-2 mx-2 text-white bg-red-500 rounded-md hover:bg-red-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
-                                        fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </button>
-                            </form>
+                    <div>
+                        <label class="text-gray-700">{{__('store.Password')}}
+                            <span class="text-blue-400">{{__('store.Optional')}}</span>
+                        </label>
+                        <input type="password" name="password"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40
+                            @error('password') border-red-500 @enderror">
+                            @error('password')
+                                <span class="error text-red-600" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+                </div>
 
-                        </td>
-                    </tr>
-                    @endforeach
+                <div class="flex items-center mt-6">
+                    <button type="submit"
+                        class="px-4 py-2 mx-4 text-white rounded-md bg-green-800 hover:bg-green-700 focus:bg-green-700 focus:outline-none">
+                        {{__('store.Edit')}}
+                    </button>
+                    <a href="{{route('stores.index')}}"
+                        class="px-4 py-2 text-white rounded-md bg-red-800 hover:bg-red-700 focus:bg-red-700 focus:outline-none">
+                        {{__('store.Cancel')}}
+                    </a>
 
-                </tbody>
-            </table>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 @endsection
-
-
-@push('js')
-<script src="{{ asset('vendor/js/datatables.min.js') }}"></script>
-<script src="{{ asset('vendor/js/datatables.bootstrap.js') }}"></script>
-<script>
-    //Datatable
-    // $(document).ready(function () {
-    //     $('#users-table').DataTable();
-    // });
-
-</script>
-@endpush

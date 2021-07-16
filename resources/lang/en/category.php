@@ -2,13 +2,12 @@
 
 return [
 
-    'Store' => 'Store',
-    'Add Store' => 'Add Store',
-    'Edit Store' => 'Edit Store',
+    'Category' => 'Category',
+    'Add Category' => 'Add Category',
+    'Edit Category' => 'Edit Category',
     'Name' => 'Name',
-    'Location' => 'Location',
-    'Phone' => 'Phone',
-    'Password' => 'Password',
+    'Description' => 'Description',
+    'Parent Category' => 'Parent Category',
     'Add' => 'Add',
     'Edit' => 'Edit',
     'Cancel' => 'Cancel',

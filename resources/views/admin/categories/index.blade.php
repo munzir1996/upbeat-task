@@ -9,63 +9,58 @@
 <div class="p-6 bg-white border rounded-lg">
     <div class="flex items-center justify-between">
         <div>
-            <h1 class="text-xl font-bold text-primary">{{__('store.Store')}}</h1>
+            <h1 class="text-xl font-bold text-primary">{{__('category.Category')}}</h1>
         </div>
 
-        <a href="{{route('stores.create')}}"
+        <a href="{{route('categories.create')}}"
             class="px-4 py-2 text-white rounded-md bg-green-800 hover:bg-green-700 focus:bg-green-700 focus:outline-none">
-            {{__('store.Add Store')}}
+            {{__('category.Add Category')}}
         </a>
 
     </div>
 
     <div class="overflow-x-auto">
         <div class="inline-block min-w-full overflow-hidden align-middle">
-            <table class="min-w-full text-sm text-gray-500 lg:text-base" id="stores-table" cellspacing="0">
+            <table class="min-w-full text-sm text-gray-500 lg:text-base" id="categories-table" cellspacing="0">
                 <thead>
                     <tr class="h-12">
                         <th class="px-6 py-4 text-left">#</th>
-                        <th class="px-6 py-4 text-left">{{__('store.Name')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('store.Location')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('store.Phone')}}</th>
-                        <th class="px-6 py-4 text-left">{{__('store.Status')}}</th>
+                        <th class="px-6 py-4 text-left">{{__('category.Name')}}</th>
+                        <th class="px-6 py-4 text-left">{{__('category.Description')}}</th>
+                        <th class="px-6 py-4 text-left">{{__('category.Status')}}</th>
                         <th class="px-6 py-4 text-center"></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($stores as $store)
+                    @foreach ($categories as $category)
                     <tr class="text-gray-700">
                         <td class="px-6 py-4 text-left">
-                            {{$store->id}}
+                            {{$category->id}}
                         </td>
 
                         <td class="px-6 py-4 text-left">
-                            {{$store->name}}
+                            {{$category->name}}
                         </td>
 
                         <td class="px-6 py-4 text-left">
-                            {{$store->location}}
-                        </td>
-
-                        <td class="px-6 py-4 text-left">
-                            {{$store->phone}}
+                            {{$category->description}}
                         </td>
 
                         <td>
-                            <a href="{{route('stores.change_status', $store->id)}}" class="text-center px-2 py-0.5 mx-2 text-sm
-                                {{$store->status == config('constants.status.active') ? 'text-red-600 hover:bg-red-200 bg-red-100' : 'text-green-600 hover:bg-green-200 bg-green-100' }} rounded-full">
-                                @if ($store->status == config('constants.status.active'))
-                                {{__('store.Inactive')}}
+                            <a href="{{route('categories.change_status', $category->id)}}" class="text-center px-2 py-0.5 mx-2 text-sm
+                                {{$category->status == config('constants.status.active') ? 'text-red-600 hover:bg-red-200 bg-red-100' : 'text-green-600 hover:bg-green-200 bg-green-100' }} rounded-full">
+                                @if ($category->status == config('constants.status.active'))
+                                {{__('category.Inactive')}}
                                 @else
-                                {{__('store.Active')}}
+                                {{__('category.Active')}}
                                 @endif
                             </a>
                         </td>
 
                         <td class="flex flex-row -mx-2 text-center">
 
-                            <a href="{{route('stores.edit', $store->id)}}" class="p-2 mx-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600">
+                            <a href="{{route('categories.edit', $category->id)}}" class="p-2 mx-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
                                         fill="currentColor">
                                         <path
@@ -76,7 +71,7 @@
                                             clip-rule="evenodd"></path>
                                         </svg>
                                     </a>
-                            <form action="{{route('stores.destroy', $store->id)}}" method="post">
+                            <form action="{{route('categories.destroy', $category->id)}}" method="post">
                                     @csrf {{ method_field('DELETE') }}
                                 <button type="submit" class="p-2 mx-2 text-white bg-red-500 rounded-md hover:bg-red-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
@@ -107,7 +102,7 @@
 <script>
     //Datatable
     // $(document).ready(function () {
-    //     $('#stores-table').DataTable();
+    //     $('#categories-table').DataTable();
     // });
 
 </script>

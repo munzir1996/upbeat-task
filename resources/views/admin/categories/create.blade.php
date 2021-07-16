@@ -5,7 +5,7 @@
 <div class="p-6 bg-white border rounded-lg">
     <div class="flex items-center justify-between">
         <div>
-            <h1 class="text-xl font-bold text-primary">{{__('store.Add Store')}}</h1>
+            <h1 class="text-xl font-bold text-primary">{{__('category.Add Category')}}</h1>
         </div>
 
     </div>
@@ -13,11 +13,34 @@
     <div class="overflow-x-auto">
         <div class="inline-block min-w-full overflow-hidden align-middle">
 
-            <form action="{{route('stores.store')}}" method="post">
+            <form action="{{route('categories.store')}}" method="post">
                 @csrf
                 <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
+
                     <div>
-                        <label class="text-gray-700">{{__('store.Name')}}</label>
+                        <label class="text-gray-700">
+                            {{__('category.Parent Category')}}
+                            <span class="text-blue-400">{{__('category.Optional')}}</span>
+                        </label>
+                        <select name="parent_category" class="block w-full h-10 mt-2 border-gray-200 rounded-md focus:border-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-40
+                        @error('parent_category') border-red-500 @enderror">
+                            <option value=""></option>
+                            @foreach ($parentCategories as $parentCategory)
+                            <option value="{{$parentCategory->id}}"
+                                {{ $parentCategory->id == old('parent_category') ? 'selected' : ''}}>
+                                {{$parentCategory->name}}
+                            </option>
+                            @endforeach
+                        </select>
+                            @error('parent_category')
+                                <span class="error text-red-600" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+
+                    <div>
+                        <label class="text-gray-700">{{__('category.Name')}}</label>
                         <input type="text" name="name" value="{{old('name')}}"
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40
                             @error('name') border-red-500 @enderror"
@@ -29,43 +52,18 @@
                             @enderror
                     </div>
 
-                    <div>
-                        <label class="text-gray-700">{{__('store.Location')}}</label>
-                        <input type="text" name="location" value="{{old('location')}}"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40
-                            @error('location') border-red-500 @enderror"
-                            required>
-                            @error('location')
-                                <span class="error text-red-600" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
                     <div>
                         <label class="text-gray-700">
-                            {{__('store.Phone')}}
-                            <span class="text-blue-400">{{__('store.Optional')}}</span>
+                            {{__('category.Description')}}
+                            <span class="text-blue-400">{{__('category.Optional')}}</span>
                         </label>
-                        <input type="text" name="phone"
+                        <input type="text" name="description"
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40
-                            @error('phone') border-red-500 @enderror">
-                            @error('phone')
-                                <span class="error text-red-600" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                    </div>
-
-                    <div>
-                        <label class="text-gray-700">{{__('store.Password')}}</label>
-                        <input type="password" name="password"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40
-                            @error('password') border-red-500 @enderror"
-                            required>
-                            @error('password')
+                            @error('description') border-red-500 @enderror">
+                            @error('description')
                                 <span class="error text-red-600" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -76,11 +74,11 @@
                 <div class="flex items-center mt-6">
                     <button type="submit"
                         class="px-4 py-2 mx-4 text-white rounded-md bg-green-800 hover:bg-green-700 focus:bg-green-700 focus:outline-none">
-                        {{__('store.Add')}}
+                        {{__('category.Add')}}
                     </button>
-                    <a href="{{route('stores.index')}}"
+                    <a href="{{route('categories.index')}}"
                         class="px-4 py-2 text-white rounded-md bg-red-800 hover:bg-red-700 focus:bg-red-700 focus:outline-none">
-                        {{__('store.Cancel')}}
+                        {{__('category.Cancel')}}
                     </a>
 
                 </div>

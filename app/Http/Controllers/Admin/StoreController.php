@@ -18,7 +18,11 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        $Stores = Store::all();
+
+        return view('admin.stores.index', [
+            'stores' => $Stores,
+        ]);
     }
 
     /**
@@ -28,7 +32,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.stores.create');
     }
 
     /**
@@ -47,6 +51,11 @@ class StoreController extends Controller
             'phone' => $data['phone'] ?? null,
             'password' => Hash::make($data['password']),
         ]);
+
+        session()->flash('success', 'Store Added');
+
+        return redirect()->route('stores.create');
+
     }
 
     /**
@@ -68,7 +77,9 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
-        //
+        return view('admin.stores.edit', [
+            'store' => $store,
+        ]);
     }
 
     /**
@@ -89,6 +100,10 @@ class StoreController extends Controller
             'password' => Hash::make($data['password']) ?? $store->password,
         ]);
 
+        session()->flash('success', 'Store Edited');
+
+        return redirect()->route('stores.edit', $store->id);
+
     }
 
     /**
@@ -100,6 +115,10 @@ class StoreController extends Controller
     public function destroy(Store $store)
     {
         $store->delete();
+
+        session()->flash('success', 'Store Deleted');
+
+        return redirect()->route('stores.index');
     }
 
     public function changeStatus(Store $store)
@@ -109,7 +128,7 @@ class StoreController extends Controller
                 'status' => config('constants.status.inactive'),
             ]);
 
-            // session()->flash('success', 'تم إلغاء التفعيل بنجاح');
+            session()->flash('success', 'Store Status Updated');
 
             return redirect()->route('stores.index');
         }
@@ -118,7 +137,7 @@ class StoreController extends Controller
             $store->update([
                 'status' => config('constants.status.active'),
             ]);
-            // session()->flash('success', 'تم التفعيل بنجاح');
+            session()->flash('success', 'Store Status Updated');
 
             return redirect()->route('stores.index');
         }
