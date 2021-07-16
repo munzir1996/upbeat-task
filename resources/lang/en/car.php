@@ -7,6 +7,7 @@ return [
     'Category' => 'Category',
     'Add Car' => 'Add Car',
     'Edit Car' => 'Edit Car',
+    'Show Car' => 'Show Car',
     'Name' => 'Name',
     'Description' => 'Description',
     'Image' => 'Image',
@@ -19,10 +20,13 @@ return [
     'Kilometer' => 'Kilometer',
     'Add' => 'Add',
     'Edit' => 'Edit',
+    'Delete' => 'Delete',
     'Cancel' => 'Cancel',
     'Optional' => '(Optional)',
     'Status' => 'Status',
     'Active' => 'Active',
     'Inactive' => 'Inactive',
+    'Delete Car' => 'Delete Car',
+    'Are you sure you want to delete the car' => 'Are you sure you want to delete the car',
 
 ];

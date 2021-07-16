@@ -84,7 +84,9 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        //
+        return view('admin.cars.show', [
+            'car' => $car,
+        ]);
     }
 
     /**
