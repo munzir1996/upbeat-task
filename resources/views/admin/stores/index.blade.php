@@ -11,12 +11,13 @@
         <div>
             <h1 class="text-xl font-bold text-primary">{{__('store.Store')}}</h1>
         </div>
+        @role('super-admin', 'admin')
 
         <a href="{{route('stores.create')}}"
             class="px-4 py-2 text-white rounded-md bg-green-800 hover:bg-green-700 focus:bg-green-700 focus:outline-none">
             {{__('store.Add Store')}}
         </a>
-
+@endrole
     </div>
 
     <div class="overflow-x-auto">
@@ -51,6 +52,7 @@
                         <td class="px-6 py-4 {{app()->getLocale() == 'en' ? 'text-left' : 'text-right' }}">
                             {{$store->phone}}
                         </td>
+                        @role('super-admin', 'admin')
 
                         <td>
                             <a href="{{route('stores.change_status', $store->id)}}" class="text-center px-2 py-0.5 mx-2 text-sm
@@ -62,8 +64,9 @@
                                 @endif
                             </a>
                         </td>
-
+@endrole
                         <td class="flex flex-row -mx-2 text-center">
+                            @role('super-admin', 'admin')
 
                             <a href="{{route('stores.edit', $store->id)}}" class="p-2 mx-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
@@ -87,7 +90,7 @@
                                     </svg>
                                 </button>
                             </form>
-
+@endrole
                         </td>
                     </tr>
                     @endforeach
@@ -105,10 +108,9 @@
 <script src="{{ asset('vendor/js/datatables.min.js') }}"></script>
 <script src="{{ asset('vendor/js/datatables.bootstrap.js') }}"></script>
 <script>
-    //Datatable
-    // $(document).ready(function () {
-    //     $('#stores-table').DataTable();
-    // });
+    $(document).ready(function () {
+        $('#stores-table').DataTable();
+    });
 
 </script>
 @endpush

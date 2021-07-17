@@ -51,27 +51,27 @@ Route::post('/admin/reset-password', [AuthNewPasswordController::class, 'store']
                 ->name('admin.password.update');
 
 Route::get('/admin/verify-email', [AuthEmailVerificationPromptController::class, '__invoke'])
-                ->middleware('auth')
+                ->middleware('auth:admin')
                 ->name('admin.verification.notice');
 
 Route::get('/admin/verify-email/{id}/{hash}', [AuthVerifyEmailController::class, '__invoke'])
-                ->middleware(['auth', 'signed', 'throttle:6,1'])
+                ->middleware(['auth:admin', 'signed', 'throttle:6,1'])
                 ->name('admin.verification.verify');
 
 Route::post('/admin/email/verification-notification', [AuthEmailVerificationNotificationController::class, 'store'])
-                ->middleware(['auth', 'throttle:6,1'])
+                ->middleware(['auth:admin', 'throttle:6,1'])
                 ->name('admin.verification.send');
 
 Route::get('/admin/confirm-password', [AuthConfirmablePasswordController::class, 'show'])
-                ->middleware('auth')
+                ->middleware('auth:admin')
                 ->name('admin.password.confirm');
 
 Route::post('/admin/confirm-password', [AuthConfirmablePasswordController::class, 'store'])
-                ->middleware('auth')
+                ->middleware('auth:admin')
                 ->name('admin.post.password.confirm');
 
 Route::post('/admin/logout', [AuthAuthenticatedSessionController::class, 'destroy'])
-                ->middleware('auth')
+                ->middleware('auth:admin')
                 ->name('admin.logout');
 
 

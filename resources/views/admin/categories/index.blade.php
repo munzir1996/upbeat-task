@@ -11,12 +11,13 @@
         <div>
             <h1 class="text-xl font-bold text-primary">{{__('category.Category')}}</h1>
         </div>
+        @role('super-admin', 'admin')
 
         <a href="{{route('categories.create')}}"
             class="px-4 py-2 text-white rounded-md bg-green-800 hover:bg-green-700 focus:bg-green-700 focus:outline-none">
             {{__('category.Add Category')}}
         </a>
-
+        @endrole
     </div>
 
     <div class="overflow-x-auto">
@@ -47,6 +48,7 @@
                             {{$category->description}}
                         </td>
 
+        @role('super-admin', 'admin')
                         <td>
                             <a href="{{route('categories.change_status', $category->id)}}" class="text-center px-2 py-0.5 mx-2 text-sm
                                 {{$category->status == config('constants.status.active') ? 'text-red-600 hover:bg-red-200 bg-red-100' : 'text-green-600 hover:bg-green-200 bg-green-100' }} rounded-full">
@@ -57,8 +59,9 @@
                                 @endif
                             </a>
                         </td>
-
+@endrole
                         <td class="flex flex-row -mx-2 text-center">
+                            @role('super-admin', 'admin')
 
                             <a href="{{route('categories.edit', $category->id)}}" class="p-2 mx-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
@@ -82,7 +85,7 @@
                                     </svg>
                                 </button>
                             </form>
-
+                            @endrole
                         </td>
                     </tr>
                     @endforeach
@@ -101,9 +104,9 @@
 <script src="{{ asset('vendor/js/datatables.bootstrap.js') }}"></script>
 <script>
     //Datatable
-    // $(document).ready(function () {
-    //     $('#categories-table').DataTable();
-    // });
+    $(document).ready(function () {
+        $('#categories-table').DataTable();
+    });
 
 </script>
 @endpush

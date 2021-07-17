@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\StoreController;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+
 Route::get('/locale/{locale}', function ($locale) {
     if (! in_array($locale, ['en', 'ar'])) {
         abort(400);
@@ -28,6 +30,11 @@ Route::get('/locale/{locale}', function ($locale) {
 
     return back();
 });
+
+Route::post('/dashboard/logout', function () {
+    Auth::guard('admin')->logout();
+    return redirect()->route('admin.login');
+})->name('dashboard.logout');
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,6 +48,7 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function () {
 
 
     Route::get('/', function () {
+        // Auth::guard('admin')->logout();
         return view('admin.dashboard');
     });
 

@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        // Middleware only applied to these methods
+        $this->middleware('permission:read')->only(['index', 'show']);
+        $this->middleware('permission:create')->only(['store', 'create']);
+        $this->middleware('permission:update')->only(['edit', 'update', 'changeStatus']);
+        $this->middleware('permission:delete')->only(['delete']);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -11,11 +11,12 @@
         <div>
             <h1 class="text-xl font-bold text-primary">{{__('car.Car')}}</h1>
         </div>
-
-        <a href="{{route('cars.create')}}"
+        @role('super-admin', 'admin')
+            <a href="{{route('cars.create')}}"
             class="px-4 py-2 text-white rounded-md bg-green-800 hover:bg-green-700 focus:bg-green-700 focus:outline-none">
             {{__('car.Add Car')}}
-        </a>
+            </a>
+        @endrole
 
     </div>
 
@@ -99,6 +100,7 @@
                             {{$car->kilometer}}
                         </td>
 
+                        @role('super-admin', 'admin')
                         <td>
                             <a href="{{route('cars.change_status', $car->id)}}"
                                 class="text-center px-2 py-0.5 mx-2 text-sm
@@ -110,16 +112,19 @@
                                 @endif
                             </a>
                         </td>
+                        @endrole
 
                         <td class="flex flex-row -mx-2 text-center">
 
-
-                              <a href="{{route('cars.show', $car->id)}}"
+                            @role('super-admin|admin', 'admin')
+                            <a href="{{route('cars.show', $car->id)}}"
                                 class="p-2 mx-2 text-white bg-gray-500 rounded-md hover:bg-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                   </svg>
                             </a>
+                            @endrole
+                            @role('super-admin', 'admin')
                             <a href="{{route('cars.edit', $car->id)}}"
                                 class="p-2 mx-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
@@ -214,7 +219,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @endrole
                         </td>
                     </tr>
                     @endforeach
@@ -233,9 +238,9 @@
 <script src="{{ asset('vendor/js/datatables.bootstrap.js') }}"></script>
 <script>
     //Datatable
-    // $(document).ready(function () {
-    //     $('#cars-table').DataTable();
-    // });
+    $(document).ready(function () {
+        $('#cars-table').DataTable();
+    });
 
 </script>
 @endpush
