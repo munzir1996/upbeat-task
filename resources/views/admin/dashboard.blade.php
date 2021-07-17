@@ -3,7 +3,7 @@
 @section('body')
 <div class="grid gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     <div class="p-5 bg-white rounded-md shadow">
-        <div class="text-base font-semibold text-gray-400">مبيعات اليوم</div>
+        <div class="text-base font-semibold text-gray-400">{{__('sidebar.Orders')}}</div>
         <div class="flex items-center pt-1">
             <div class="text-2xl font-bold text-gray-900 ">149</div>
             <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-green-600 bg-green-100 rounded-full">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="p-5 bg-white rounded-md shadow">
-        <div class="text-base font-semibold text-gray-400">مبيعات الاسبوع</div>
+        <div class="text-base font-semibold text-gray-400">{{__('sidebar.Users')}}</div>
         <div class="flex items-center pt-1">
             <div class="text-2xl font-bold text-gray-900 ">1265</div>
             <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-red-600 bg-red-100 rounded-full">
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="p-5 bg-white rounded-md shadow">
-        <div class="text-base font-semibold text-gray-400">مبيعات الشهر</div>
+        <div class="text-base font-semibold text-gray-400">{{__('car.Car')}}</div>
         <div class="flex items-center pt-1">
             <div class="text-2xl font-bold text-gray-900 ">7586</div>
             <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-green-600 bg-green-100 rounded-full">
@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="p-5 bg-white rounded-md shadow">
-        <div class="text-base font-semibold text-gray-400">مبيعات السنة</div>
+        <div class="text-base font-semibold text-gray-400">{{__('category.Category')}}</div>
         <div class="flex items-center pt-1">
             <div class="text-2xl font-bold text-gray-900 ">200,639</div>
             <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-green-600 bg-green-100 rounded-full">

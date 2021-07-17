@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\StoreController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,12 @@ Route::get('/dashboard', function () {
 
 Route::prefix('/admin')->middleware('auth:admin')->group(function () {
 
+    Route::get('report/user', [ReportController::class, 'userReport'])->name('report.user');
+    Route::get('filter/user', [ReportController::class, 'userFilter'])->name('filter.user');
+
+
+    Route::get('report/order', [ReportController::class, 'orderReport'])->name('report.order');
+    Route::get('filter/order', [ReportController::class, 'orderFilter'])->name('filter.order');
 
     Route::get('/', function () {
         // Auth::guard('admin')->logout();
